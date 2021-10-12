@@ -20,7 +20,7 @@ ABasePawn::ABasePawn()
 	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Turret"));
 	TurretMesh->SetupAttachment(BaseMesh);
 
-	ProjectileSpawnPoint = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Barrel"));
+	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Barrel"));
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 
 }
