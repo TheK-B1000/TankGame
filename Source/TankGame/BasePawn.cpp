@@ -2,6 +2,7 @@
 
 #include "BasePawn.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -12,6 +13,15 @@ ABasePawn::ABasePawn()
 	// Construct the body
 	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule Collider"));
 	RootComponent = CapsuleComp;
+
+	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	BaseMesh->SetupAttachment(CapsuleComp);
+
+	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Turret"));
+	TurretMesh->SetupAttachment(BaseMesh);
+
+	ProjectileSpawnPoint = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Barrel"));
+	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 
 }
 
