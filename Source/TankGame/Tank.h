@@ -28,5 +28,8 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Components", BlueprintReadWrite, meta = (AllowPrivateAccess))
 	class UCameraComponent* Camera;
 
+	UPROPERTY(VisibleAnywhere, Category = "Components", BlueprintReadWrite, meta = (AllowPrivateAccess))
+	float Speed = 200.f;
+
 	void Move(float Value);
 };
