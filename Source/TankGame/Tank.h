@@ -31,5 +31,9 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Components", BlueprintReadWrite, meta = (AllowPrivateAccess))
 	float Speed = 200.f;
 
+	UPROPERTY(VisibleAnywhere, Category = "Components", BlueprintReadWrite, meta = (AllowPrivateAccess))
+	float TurnRate = 100.f;
+
 	void Move(float Value);
+	void Turn(float Value);
 };
