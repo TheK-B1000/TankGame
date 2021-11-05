@@ -26,6 +26,8 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
 
+	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
+
 }
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
@@ -61,6 +63,8 @@ void ATank::Tick(float DeltaTime)
 			false,
 			-1.f
 		);
+
+		RotateTurret(HitResult.ImpactPoint);
 	}
 }
 
@@ -82,4 +86,5 @@ void ATank::Turn(float Value)
 	FRotator DeltaRotation = FRotator::ZeroRotator;
 	DeltaRotation.Yaw = Value * DeltaTime * TurnRate;
 	AddActorLocalRotation(DeltaRotation, true);
+
 }
