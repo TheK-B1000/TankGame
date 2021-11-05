@@ -42,4 +42,8 @@ private:
 	void Turn(float Value);
 
 	APlayerController* PlayerControllerRef;
+
+public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 };

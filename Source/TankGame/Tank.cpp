@@ -5,6 +5,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "DrawDebugHelpers.h"
 
 // Sets default values
 ATank::ATank()
@@ -32,6 +33,35 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 
 	PlayerControllerRef = Cast<APlayerController>(GetController());
+}
+
+// Called every frame
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	FHitResult HitResult;
+
+	if (PlayerControllerRef)
+	{
+		PlayerControllerRef->GetHitResultUnderCursor
+		(
+			ECollisionChannel::ECC_Visibility,
+			false,
+			HitResult
+		);
+
+		DrawDebugSphere
+		(
+			GetWorld(),
+			HitResult.ImpactPoint,
+			25.f,
+			14,
+			FColor::Red,
+			false,
+			-1.f
+		);
+	}
 }
 
 void ATank::Move(float Value)
